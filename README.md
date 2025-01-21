@@ -1,8 +1,6 @@
-## time-counter
+## online-user-stats
 
 > just a simple online user/time counter
-
-[Usage](https://github.com/soxft/time-counter/wiki/usage) | [install](https://github.com/soxft/time-counter/wiki/install)
 
 ## Update
 
@@ -10,6 +8,8 @@
 2. 修复安全告警;
 3. 添加自动化部署脚本;
 4. 增加在线人数统计样式;
+
+已在 [个人主页](https://home.dong4j.site/) 上使用.
 
 ## Build
 
@@ -25,13 +25,13 @@
 1. Iframe 引入
 
 ```
-<center><iframe frameborder=0  height=50px marginwidth=0 scrolling=no src="https://time-counter.onmicrosoft.cn/room/{Room ID}"></iframe></center>
+<center><iframe frameborder=0  height=50px marginwidth=0 scrolling=no src="https://127.0.0.1:3000/room/{Room ID}"></iframe></center>
 ```
 
 1. JS 引入
 
 ```
-<script src="https://time-counter.onmicrosoft.cn/counter.js" async="" id="online-counter" interval="240" api="https://time-counter.onmicrosoft.cn/counter" room="{Room ID}"></script>
+<script src="https://127.0.0.1:3000/counter.js" async="" id="online-counter" interval="240" api="https://127.0.0.1:3000/counter" room="{Room ID}"></script>
 
 本站当前在线人数 <span style="color: red;" id="online_user"></span> 人
 
@@ -69,11 +69,11 @@ function getOnlineUser() {
     }
     //create script
     let script = document.createElement("script");
-    script.src = "https://time-counter.onmicrosoft.cn/counter.js";
+    script.src = "https://127.0.0.1:3000/counter.js";
     script.async = true;
     script.id = "online-counter";
     script.setAttribute("interval", 240);
-    script.setAttribute("api", "https://time-counter.onmicrosoft.cn/counter");
+    script.setAttribute("api", "https://127.0.0.1:3000/counter");
     script.setAttribute("room", "{Room ID}");
     document.head.appendChild(script);
 }
@@ -84,3 +84,10 @@ function getOnlineUser() {
 </script>s
 ```
 
+## Todo
+
+- [ ] 部署说明
+
+## 来源
+
+[time-counter](https://github.com/soxft/time-counter)
