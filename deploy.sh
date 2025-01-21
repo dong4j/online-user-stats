@@ -21,8 +21,19 @@ if [ ! -d "$LOCAL_DIR" ]; then
   exit 1
 fi
 
+upload (){
+  #上传文件（静默模式 + 错误输出）
+  curl -s -f --request POST \
+    --url "http://127.0.0.1:36677/upload?picbed=tcyun&configName=COS-Blog-Static" \
+    --header 'content-type: multipart/form-data' \
+    --form file=@"$FILE" > /dev/null
+}
+
 cd "$SCRIPT_DIR/dist" || exit 1
 npm run build
+FILE="counter.js"
+upload $FILE ${CONFIG_NAME}
+
 cd "$SCRIPT_DIR" || exit 1
 
 ssh -t "$SSH_ALIAS" <<EOF
