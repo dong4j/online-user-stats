@@ -90,4 +90,5 @@ function getOnlineUser() {
 
 ## 来源
 
-[time-counter](https://github.com/soxft/time-counter)
+- [time-counter](https://github.com/soxft/time-counter)
+- [原使用说明](https://time-counter.icodeq.com/)
