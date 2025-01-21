@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>online user test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      /* 定义在线人数的指示灯样式 */
+      .indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%; /* 圆形 */
+        background-color: green; /* 默认红色 */
+        margin-left: 0px;
+        animation: subtle-breathing 1.2s infinite; /* 呼吸动画 */
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.8); /* 初始光晕 */
+      }
+
+      @keyframes subtle-breathing {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: 0 0 5px rgba(255, 0, 0, 0.8); /* 光晕正常 */
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(0.95);
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* 光晕稍大且更淡 */
+        }
+      }
+    </style>
+  </head>
+
+  <body style="padding: 4em">
+    <h2>SET ROOM</h2>
+    <label for="room-input">ROOMS:&emsp;</label
+    ><input type="text" id="room-input" />
+
+    <h2>online user status</h2>
+    <span>Online:</span>
+    <span id="online_user" style="font-size: 1em; font-weight: bold">1</span>
+    <span id="indicator" class="indicator"></span>
+    <p>my online time: <span style="color: red" id="online_me"></span></p>
+    <p>total online time: <span style="color: red" id="online_total"></span></p>
+  </body>
+  <script>
+    let room = localStorage.getItem("room") || "";
+    let roomInput = document.getElementById("room-input");
+
+    roomInput.value = room;
+
+    getOnlineUser();
+    roomInput.addEventListener("change", function (e) {
+      localStorage.setItem("room", e.target.value);
+      location.reload();
+    });
+
+    function getOnlineUser() {
+      //create script
+      let script = document.createElement("script");
+      script.src = "/counter.js";
+      script.async = true;
+      script.id = "online-counter";
+      script.setAttribute("interval", 2000);
+      script.setAttribute("api", "/counter");
+      script.setAttribute("room", room);
+      document.head.appendChild(script);
+    }
+  </script>
+</html>

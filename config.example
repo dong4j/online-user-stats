@@ -1,0 +1,16 @@
+server:
+  address: 0.0.0.0:3000
+  debug: true
+  log: true
+  server: "time-counter"
+  interval: 10
+  cors:
+    - "https://www.example.com"
+
+redis:
+  address: 127.0.0.1:6379
+  password: 
+  database: 0
+  prefix: tc
+  maxIdle: 10
+  maxActive: 500

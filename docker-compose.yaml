@@ -1,0 +1,17 @@
+version: "3"
+services:
+  counter:
+    image: "ghcr.io/soxft/time-counter:latest"
+    ports:
+      - "7771:8080"
+    volumes:
+      - ./data:/app/expose
+    environment:
+      LOG_ENABLE: true
+      DEBUG_ENABLE: false
+      REDIS_ADDR: 192.168.31.7:6379
+      REDIS_PWD: password
+      REDIS_DATABASE: 2
+      REDIS_PREFIX: tc
+      API_SERVER: http:\/\/127.0.0.1:8080\/counter
+      INTERVAL: 10
